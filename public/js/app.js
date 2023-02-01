@@ -1910,8 +1910,24 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
-  components: {
-    //qui inseriremo i componenti
+  components: {},
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  mounted: function mounted() {
+    this.getPosts();
+  },
+  beforeUpdate: function beforeUpdate() {},
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+      axios.get('http://127.0.0.1:8000/api/posts').then(function (res) {
+        console.log(res.data);
+        _this.posts = res.data;
+      });
+    }
   }
 });
 
@@ -1931,17 +1947,15 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("ul", {
-    staticClass: "navbar-nav mr-auto"
-  }, [_c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
+  return _c("div", {
     attrs: {
-      to: {
-        name: "admin.posts.index"
-      }
+      id: "root"
     }
-  }, [_vm._v("Lista Post")])], 1)])]);
+  }, [_vm.posts.length ? _c("ul", _vm._l(_vm.posts, function (elem) {
+    return _c("li", {
+      key: elem.id
+    }, [_vm._v("\n            " + _vm._s(elem.name) + "\n            "), elem.category ? _c("span", [_vm._v("\n                " + _vm._s(elem.category.name) + "\n            ")]) : _vm._e()]);
+  }), 0) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -49669,7 +49683,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 var app = new Vue({
-  el: '#root',
+  el: "#root",
   render: function render(h) {
     return h(_views_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
@@ -49813,8 +49827,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/paolonicoletti/Desktop/boolean-esercizi/laravel-many-to-many/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/paolonicoletti/Desktop/boolean-esercizi/laravel-many-to-many/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/paolonicoletti/Desktop/boolean-esercizi/laravel-api/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/paolonicoletti/Desktop/boolean-esercizi/laravel-api/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

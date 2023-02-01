@@ -1,18 +1,26 @@
 <template>
-    <div>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <router-link :to="{ name: 'admin.posts.index' }">Lista Post</router-link>
+    <div id="root">
+
+        <ul v-if="posts.length">
+            <li v-for="elem in posts" :key="elem.id">
+                {{ elem.name }}
+                <span v-if="elem.category">
+                    {{ elem.category.name }}
+                </span>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+
+
+
 export default {
     name: "App",
+
     components: {
-        //qui inseriremo i componenti
+
     },
     data() {
         return {
@@ -27,10 +35,11 @@ export default {
     },
     methods: {
         getPosts() {
-            axios.get('http://127.0.0.1:8000/api/posts').then((res) => {
-                console.log(res.data);
-                this.posts = res.data
-            })
+            axios.get('http://127.0.0.1:8000/api/posts')
+                .then((res) => {
+                    console.log(res.data);
+                    this.posts = res.data
+                })
         }
     },
 };
