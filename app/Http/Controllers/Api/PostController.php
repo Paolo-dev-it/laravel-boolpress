@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -15,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::OrderBy('id', 'DESC')->with('category', 'tags')->paginate(5);
+
         return response()->json($posts);
     }
 
@@ -38,7 +40,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::With('category', 'tags')->find($id);
+        if (!$post) return response('Post non trovato', 404);
+
+        return response()->json($post);
     }
 
     /**
