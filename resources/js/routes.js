@@ -8,8 +8,11 @@ import HomePage from "./views/pages/HomePage.vue";
 import AboutUs from "./views/pages/AboutUs.vue";
 
 import PostsIndex from "./views/pages/posts/PostsIndex.vue";
+
 import PostShow from "./views/pages/posts/PostShow.vue";
+
 import TagsIndex from "./views/pages/tags/TagsIndex.vue";
+
 import TagShow from "./views/pages/tags/TagShow.vue";
 
 const router = new VueRouter({
